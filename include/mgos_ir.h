@@ -37,11 +37,17 @@ struct mgos_irrecv_nec_s *mgos_irrecv_nec_create(
   void (*cb)(int, void *),
   void *userdata
 );
+struct mgos_irrecv_nec_s *mgos_irrecv_sam_create(
+  int pin,
+  void (*cb)(int, void *),
+  void *userdata
+);
 
 /*
  * Destroy an object instance of IR receiver for NEC protocol.
  */
 void mgos_irrecv_nec_close(struct mgos_irrecv_nec_s *obj);
+void mgos_irrecv_sam_close(struct mgos_irrecv_sam_s *obj);
 
 //------------------------------------------------------------------------------
 // NEC sender
@@ -55,6 +61,7 @@ void mgos_irrecv_nec_close(struct mgos_irrecv_nec_s *obj);
  * tsop: mode: true - mimic TSOP signal, false - drive real IR led at 38 kHz.
  */
 void mgos_irsend_nec(int pin, int code, bool tsop);
+void mgos_irsend_sam(int pin, int code, bool tsop);
 
 //------------------------------------------------------------------------------
 

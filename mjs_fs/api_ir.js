@@ -27,6 +27,26 @@ let IR = {
           return IR.Receiver.NEC._cls(this.obj);
         }
       }
+    },
+    SAMSUNG: {
+      _crt: ffi('void *mgos_irrecv_sam_create(int, void (*)(int, userdata), userdata)'),
+      _cls: ffi('void mgos_irrecv_sam_close(void *)'),
+
+      // ## **`IR.Receiver.NEC.create(pin, callback, userdata)`**
+      // Create an object instance of IR receiver for NEC protocol.
+      // Return value: an object with the methods described below.
+      create: function(pin, cb, ud) {
+        let self = Object.create(IR.Receiver.SAMSUNG._proto);
+        self.obj = IR.Receiver.SAMSUNG._crt(pin, cb, ud);
+        return self;
+      },
+      _proto: {
+        // ## **`myIR.close()`**
+        // Close receiver handle. Return value: none.
+        close: function() {
+          return IR.Receiver.SAMSUNG._cls(this.obj);
+        }
+      }
     }
 
   },
@@ -45,6 +65,16 @@ let IR = {
       // Mimic TSOP receiver: drive a pin as if it would be connected to a TSOP receiver. Return value: none.
       tsop: function(pin, code) {
         return IR.Sender.NEC._send(pin, code, true);
+      }
+    },
+    SAMSUNG: {
+      _send: ffi('void mgos_irsend_sam(int, int, int)'),
+
+      pwm: function(pin, code) {
+        return IR.Sender.SAMSUNG._send(pin, code, false);
+      },
+      tsop: function(pin, code) {
+        return IR.Sender.SAMSUNG._send(pin, code, true);
       }
     }
 
