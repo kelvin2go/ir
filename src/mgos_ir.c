@@ -265,7 +265,7 @@ struct mgos_irrecv_nec_s *mgos_irrecv_sam_create(int pin, void (*handler)(int, v
   return obj;
 }
 
-void mgos_irrecv_sam_close(struct mgos_irrecv_sam_s *obj)
+void mgos_irrecv_sam_close(struct mgos_irrecv_nec_s *obj)
 {
   mgos_gpio_remove_int_handler(obj->pin, NULL, NULL);
   free(obj);

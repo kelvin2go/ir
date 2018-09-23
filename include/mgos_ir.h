@@ -47,7 +47,7 @@ struct mgos_irrecv_nec_s *mgos_irrecv_sam_create(
  * Destroy an object instance of IR receiver for NEC protocol.
  */
 void mgos_irrecv_nec_close(struct mgos_irrecv_nec_s *obj);
-void mgos_irrecv_sam_close(struct mgos_irrecv_sam_s *obj);
+void mgos_irrecv_sam_close(struct mgos_irrecv_nec_s *obj);
 
 //------------------------------------------------------------------------------
 // NEC sender
