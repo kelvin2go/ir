@@ -330,17 +330,6 @@ static void irsend_sam_tsop(int pin, int code)
 
 #endif
 
-static void irsend_carrier_38kHz(int pin, int n)
-{
-  // make signal of circa 38 kHz of circa 1/3 duty
-  for (; n >= 0; --n) {
-    mgos_gpio_write(pin, 1);
-    mgos_usleep(9);
-    mgos_gpio_write(pin, 0);
-    mgos_usleep(16);
-  }
-}
-
 static void irsend_sam_pwm(int pin, int code)
 {
   // setup
