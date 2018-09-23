@@ -244,9 +244,9 @@ static void irrecv_sam_handler(int pin, void *arg)
   }
 }
 
-struct mgos_irrecv_sam_s *mgos_irrecv_sam_create(int pin, void (*handler)(int, void *), void *user_data)
+struct mgos_irrecv_nec_s *mgos_irrecv_sam_create(int pin, void (*handler)(int, void *), void *user_data)
 {
-  struct mgos_irrecv_sam_s *obj = calloc(1, sizeof(*obj));
+  struct mgos_irrecv_nec_s *obj = calloc(1, sizeof(*obj));
   if (obj == NULL) return NULL;
   obj->pin = pin;
   obj->handler = handler;
@@ -291,8 +291,6 @@ void mgos_irrecv_sam_close(struct mgos_irrecv_sam_s *obj)
 #define SAMSUNG_ONE_SPACE   1600
 #define SAMSUNG_ZERO_SPACE   560
 #define SAMSUNG_RPT_SPACE   2250
-
-
 
 
 // TODO: mgos_bitbang_write_bits or non-delaying state machine?
